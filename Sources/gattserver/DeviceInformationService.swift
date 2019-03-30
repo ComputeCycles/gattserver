@@ -7,7 +7,13 @@
 
 import Foundation
 import Bluetooth
+#if os(Linux)
 import GATT
+import BluetoothLinux
+#elseif os(macOS)
+import DarwinGATT
+import BluetoothDarwin
+#endif
 
 public final class GATTDeviceInformationServiceController: GATTServiceController {
     

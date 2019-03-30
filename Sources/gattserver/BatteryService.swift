@@ -8,9 +8,13 @@
 
 import Foundation
 import Bluetooth
+#if os(Linux)
 import GATT
+#else
+import DarwinGATT
+#endif
 
-public final class GATTBatteryServiceController: GATTServiceController {
+public final class GATTBatteryServiceController: GATTServiceController {    
     
     public static let service: BluetoothUUID = .batteryService
     
@@ -80,7 +84,7 @@ public final class GATTBatteryServiceController: GATTServiceController {
             #endif
         }
         
-        RunLoop.main.add(timer, forMode: .commonModes)
+        RunLoop.main.add(timer, forMode: RunLoop.Mode.common)
     }
     
     deinit {
